@@ -16,14 +16,31 @@ public class CreateProductAction implements Action {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
+        Product product = new Product();
+
         System.out.println("Enter product name:");
         String name = scanner.nextLine();
+        product.setName(name);
+
         System.out.println("Enter product price: ");
         String price = scanner.nextLine();
-
-        Product product = new Product();
-        product.setName(name);
         product.setPrice(new BigDecimal(price));
+
+        System.out.println("Enter product category. Choose one of the following : ");
+        for (Category categoryValue : Category.values()) {
+            System.out.print(categoryValue + " ");
+        }
+        String category = scanner.nextLine().toUpperCase();
+        product.setCategory(Category.valueOf(category));
+
+        System.out.println("Enter product discount: ");
+        String discount = scanner.nextLine();
+        product.setDiscount(new BigDecimal(discount));
+
+        System.out.println("Enter product description: ");
+        String description = scanner.nextLine();
+        product.setDescription(description);
+
 
         try {
             Long response = productService.create(product);
