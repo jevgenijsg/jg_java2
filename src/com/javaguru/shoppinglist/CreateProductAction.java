@@ -27,8 +27,7 @@ public class CreateProductAction implements Action {
         product.setPrice(new BigDecimal(price));
 
         System.out.println("Enter product category. Choose one of the following : ");
-        for (Category categoryValue : Category.values()
-        ) {
+        for (Category categoryValue : Category.values()) {
             System.out.print(categoryValue + " ");
         }
         String category = scanner.nextLine().toUpperCase();
