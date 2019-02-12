@@ -12,6 +12,7 @@ public class ConsoleUI {
     private final List<Action> actions = new ArrayList<>();
 
     public void start() {
+
         ProductService productService = new DefaultProductService();
         Action exitAction = new ExitAction();
         Action createUserAction = new CreateProductAction(productService);
@@ -19,7 +20,16 @@ public class ConsoleUI {
         actions.add(findUserByIdAction);
         actions.add(createUserAction);
         actions.add(exitAction);
+        readUserInput();
+    }
 
+    private void printMenu() {
+        for (int i = 0; i < actions.size(); i++) {
+            System.out.println(i + ". " + actions.get(i));
+        }
+    }
+
+    private void readUserInput() {
         Scanner scanner = new Scanner(System.in);
 
         int response = 0;
@@ -32,12 +42,6 @@ public class ConsoleUI {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    private void printMenu() {
-        for (int i = 0; i < actions.size(); i++) {
-            System.out.println(i + ". " + actions.get(i));
         }
     }
 }
