@@ -20,4 +20,8 @@ public class ProductRepository {
     public Product findById(Long id) {
         return productDatabase.get(id);
     }
+
+    public Map<Long, Product> getProductDatabase() {
+        return productDatabase;
+    }
 }

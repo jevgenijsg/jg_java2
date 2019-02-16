@@ -28,7 +28,7 @@ public class CreateProductAction implements Action {
 
         System.out.println("Enter product price: ");
         String price = scanner.nextLine();
-        product.setPrice(new BigDecimal(price));
+        product.setRegularPrice(new BigDecimal(price));
 
         System.out.println("Enter product category. Choose one of the following : ");
         for (Category categoryValue : Category.values()) {
@@ -44,7 +44,6 @@ public class CreateProductAction implements Action {
         System.out.println("Enter product description: ");
         String description = scanner.nextLine();
         product.setDescription(description);
-
 
         try {
             Long response = productService.create(product);

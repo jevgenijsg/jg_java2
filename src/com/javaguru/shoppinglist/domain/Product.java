@@ -7,10 +7,11 @@ public class Product {
 
     private Long id;
     private String name;
-    private BigDecimal price;
+    private BigDecimal regularPrice;
     private Category category;
     private String description;
     private BigDecimal discount;
+    private BigDecimal discountedPrice;
 
     public Long getId() {
         return id;
@@ -28,12 +29,12 @@ public class Product {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public BigDecimal getRegularPrice() {
+        return regularPrice;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setRegularPrice(BigDecimal regularPrice) {
+        this.regularPrice = regularPrice;
     }
 
     public Category getCategory() {
@@ -60,6 +61,14 @@ public class Product {
         this.discount = discount;
     }
 
+    public BigDecimal getDiscountedPrice() {
+        return discountedPrice;
+    }
+
+    public void setDiscountedPrice(BigDecimal discountedPrice) {
+        this.discountedPrice = discountedPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,15 +76,16 @@ public class Product {
         Product product = (Product) o;
         return Objects.equals(id, product.id) &&
                 Objects.equals(name, product.name) &&
-                Objects.equals(price, product.price) &&
+                Objects.equals(regularPrice, product.regularPrice) &&
                 category == product.category &&
                 Objects.equals(description, product.description) &&
-                Objects.equals(discount, product.discount);
+                Objects.equals(discount, product.discount) &&
+                Objects.equals(discountedPrice, product.discountedPrice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, category, description, discount);
+        return Objects.hash(id, name, regularPrice, category, description, discount, discountedPrice);
     }
 
     @Override
@@ -83,10 +93,11 @@ public class Product {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", price=" + price +
+                ", regularPrice=" + regularPrice +
                 ", category=" + category +
                 ", description='" + description + '\'' +
                 ", discount=" + discount +
+                ", discountedPrice=" + discountedPrice +
                 '}';
     }
 }
