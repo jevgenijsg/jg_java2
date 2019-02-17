@@ -17,8 +17,10 @@ public class ConsoleUI {
         Action exitAction = new ExitAction();
         Action createUserAction = new CreateProductAction(productService);
         Action findUserByIdAction = new FindProductByIdAction(productService);
-        actions.add(findUserByIdAction);
+        Action findUserByNameAction = new FindProductByNameAction(productService);
         actions.add(createUserAction);
+        actions.add(findUserByIdAction);
+        actions.add(findUserByNameAction);
         actions.add(exitAction);
         readUserInput();
     }

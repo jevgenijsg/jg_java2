@@ -21,6 +21,16 @@ public class ProductRepository {
         return productDatabase.get(id);
     }
 
+    public Product findByName(String name) {
+        Product productToReturn = new Product();
+        for (Map.Entry<Long, Product> lookUp : productDatabase.entrySet()) {
+            if (lookUp.getValue().getName().equalsIgnoreCase(name)) {
+                productToReturn = lookUp.getValue();
+            }
+        }
+        return productToReturn;
+    }
+
     public Map<Long, Product> getProductDatabase() {
         return productDatabase;
     }

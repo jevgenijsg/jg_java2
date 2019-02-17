@@ -6,6 +6,7 @@ import com.javaguru.shoppinglist.service.validation.ProductValidationService;
 
 import java.math.BigDecimal;
 
+
 public class DefaultProductService implements ProductService {
 
     private ProductRepository productRepository = new ProductRepository();
@@ -14,6 +15,11 @@ public class DefaultProductService implements ProductService {
     public Product findBy(Long id) {
         validationService.validateId(id);
         return productRepository.findById(id);
+    }
+
+    @Override
+    public Product findByName(String name) {
+        return productRepository.findByName(name);
     }
 
     @Override

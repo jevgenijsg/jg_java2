@@ -2,14 +2,16 @@ package com.javaguru.shoppinglist.service.validation;
 
 import com.javaguru.shoppinglist.domain.Product;
 
+import java.math.BigDecimal;
+
 public class ProductPriceValidationRule implements ProductValidationRule {
 
-    private final double acceptableMinimumPrice = 0.0;
+    private static final BigDecimal acceptableMinimumPrice = BigDecimal.valueOf((0.0));
 
     @Override
     public void validate(Product product) {
         CheckNotNull(product);
-        if (product.getRegularPrice().doubleValue() <= acceptableMinimumPrice) {
+        if (product.getRegularPrice().compareTo(acceptableMinimumPrice) <= 0) {
             throw new ProductValidationException("Price must be more than zero(0)!!! Please try again");
         }
     }
