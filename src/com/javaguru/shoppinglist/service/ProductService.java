@@ -7,4 +7,5 @@ public interface ProductService {
     Long create(Product product);
     Product findBy(Long id);
 
+    Product findByName(String name);
 }
