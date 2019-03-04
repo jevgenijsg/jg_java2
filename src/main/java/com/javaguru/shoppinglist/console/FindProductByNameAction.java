@@ -3,6 +3,7 @@ package com.javaguru.shoppinglist.console;
 import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.service.ProductService;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class FindProductByNameAction implements Action {
@@ -20,7 +21,7 @@ public class FindProductByNameAction implements Action {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name: ");
         String name = scanner.nextLine();
-        Product response = productService.findByName(name);
+        Optional<Product> response = productService.findByName(name);
         System.out.println("Response: " + response);
     }
 

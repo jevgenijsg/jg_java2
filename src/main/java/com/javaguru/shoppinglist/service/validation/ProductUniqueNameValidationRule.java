@@ -3,18 +3,21 @@ package com.javaguru.shoppinglist.service.validation;
 import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.repository.ProductRepository;
 
-public class ProductNameValidationRule implements ProductValidationRule {
+import org.springframework.stereotype.Component;
 
-    ProductRepository productRepository;
+@Component
+public class ProductUniqueNameValidationRule implements ProductValidationRule {
 
-    public ProductNameValidationRule(ProductRepository productRepository) {
+    private final ProductRepository productRepository;
+
+    public ProductUniqueNameValidationRule(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
     @Override
     public void validate(Product product) {
-        if ((!productRepository.getProductDatabase().isEmpty()) &&
-                (productRepository.findByName(product.getName()).getName().equalsIgnoreCase(product.getName()))) {
+        CheckNotNull(product);
+        if (productRepository.findByName(product.getName()).isPresent()) {
             throw new ProductValidationException("Name is already taken");
         }
     }

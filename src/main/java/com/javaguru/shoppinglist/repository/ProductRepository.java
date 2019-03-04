@@ -2,9 +2,13 @@ package com.javaguru.shoppinglist.repository;
 
 import com.javaguru.shoppinglist.domain.Product;
 
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
+@Component
 public class ProductRepository {
 
     private Map<Long, Product> productDatabase = new HashMap<>();
@@ -21,17 +25,12 @@ public class ProductRepository {
         return productDatabase.get(id);
     }
 
-    public Product findByName(String name) {
-        Product productToReturn = new Product();
+    public Optional<Product> findByName(String name) {
         for (Map.Entry<Long, Product> lookUp : productDatabase.entrySet()) {
             if (lookUp.getValue().getName().equalsIgnoreCase(name)) {
-                productToReturn = lookUp.getValue();
+                return Optional.of(lookUp.getValue());
             }
         }
-        return productToReturn;
-    }
-
-    public Map<Long, Product> getProductDatabase() {
-        return productDatabase;
+        return Optional.empty();
     }
 }
