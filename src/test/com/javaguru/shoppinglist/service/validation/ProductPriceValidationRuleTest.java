@@ -8,24 +8,19 @@ import org.junit.rules.ExpectedException;
 
 import java.math.BigDecimal;
 
-
 public class ProductPriceValidationRuleTest {
 
     @Rule
     public final ExpectedException expectedException = ExpectedException.none();
     private ProductPriceValidationRule victim = new ProductPriceValidationRule();
-
     private Product input;
 
     @Test
-
     public void shouldThrowPriceException() {
-
         input = product(BigDecimal.valueOf(-1));
 
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Price must be more than zero(0)!!! Please try again");
-
         victim.validate(input);
     }
 

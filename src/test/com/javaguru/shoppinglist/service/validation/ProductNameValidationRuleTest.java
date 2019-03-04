@@ -9,11 +9,8 @@ import org.junit.rules.ExpectedException;
 public class ProductNameValidationRuleTest {
 
     @Rule
-
     public final ExpectedException expectedException = ExpectedException.none();
-
     private ProductNameValidationRule victim = new ProductNameValidationRule();
-
     private Product input;
 
     @Test
@@ -22,7 +19,6 @@ public class ProductNameValidationRuleTest {
 
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Name must be not null or empty");
-
         victim.validate(input);
     }
 
@@ -33,10 +29,7 @@ public class ProductNameValidationRuleTest {
 
         expectedException.expect(ProductValidationException.class);
         expectedException.expectMessage("Name must be not null or empty");
-
         victim.validate(input);
-
-
     }
 
 
