@@ -1,19 +1,25 @@
 package com.javaguru.shoppinglist.console;
 
-import com.javaguru.shoppinglist.service.DefaultProductService;
 import com.javaguru.shoppinglist.service.ProductService;
+
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Component
 public class ConsoleUI {
 
     private final List<Action> actions = new ArrayList<>();
 
-    public void start() {
+    ProductService productService;
 
-        ProductService productService = new DefaultProductService();
+    public ConsoleUI(ProductService productService) {
+        this.productService = productService;
+    }
+
+    public void start() {
         Action exitAction = new ExitAction();
         Action createUserAction = new CreateProductAction(productService);
         Action findUserByIdAction = new FindProductByIdAction(productService);

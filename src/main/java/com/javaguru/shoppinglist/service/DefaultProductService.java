@@ -4,13 +4,21 @@ import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.repository.*;
 import com.javaguru.shoppinglist.service.validation.ProductValidationService;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
+import java.util.Optional;
 
-
+@Component
 public class DefaultProductService implements ProductService {
 
-    private ProductRepository productRepository = new ProductRepository();
-    private ProductValidationService validationService = new ProductValidationService(productRepository);
+    private final ProductRepository productRepository;
+    private final ProductValidationService validationService;
+
+    public DefaultProductService(ProductRepository productRepository, ProductValidationService validationService) {
+        this.productRepository = productRepository;
+        this.validationService = validationService;
+    }
 
     public Product findBy(Long id) {
         validationService.validateId(id);
@@ -18,7 +26,7 @@ public class DefaultProductService implements ProductService {
     }
 
     @Override
-    public Product findByName(String name) {
+    public Optional<Product> findByName(String name) {
         return productRepository.findByName(name);
     }
 
