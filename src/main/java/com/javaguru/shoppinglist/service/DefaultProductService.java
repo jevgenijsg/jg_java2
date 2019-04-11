@@ -4,6 +4,7 @@ import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.repository.*;
 import com.javaguru.shoppinglist.service.validation.ProductValidationService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -15,12 +16,13 @@ public class DefaultProductService implements ProductService {
     private final ProductRepository productRepository;
     private final ProductValidationService validationService;
 
+    @Autowired
     public DefaultProductService(ProductRepository productRepository, ProductValidationService validationService) {
         this.productRepository = productRepository;
         this.validationService = validationService;
     }
 
-    public Product findBy(Long id) {
+    public Optional<Product> findById(Long id) {
         validationService.validateId(id);
         return productRepository.findById(id);
     }
@@ -34,8 +36,8 @@ public class DefaultProductService implements ProductService {
     public Long create(Product product) {
         calculateDiscountedPrice(product);
         validationService.validate(product);
-        Product createdProduct = productRepository.createProduct(product);
-        return createdProduct.getId();
+        Long createdProduct = productRepository.createProduct(product);
+        return createdProduct;
     }
 
     private void calculateDiscountedPrice(Product product) {

@@ -2,6 +2,7 @@ package com.javaguru.shoppinglist.console;
 
 import com.javaguru.shoppinglist.service.ProductService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,9 +13,9 @@ import java.util.Scanner;
 public class ConsoleUI {
 
     private final List<Action> actions = new ArrayList<>();
-
     ProductService productService;
 
+    @Autowired
     public ConsoleUI(ProductService productService) {
         this.productService = productService;
     }
