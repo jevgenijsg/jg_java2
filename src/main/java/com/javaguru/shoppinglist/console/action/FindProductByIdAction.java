@@ -1,16 +1,20 @@
-package com.javaguru.shoppinglist.console;
+package com.javaguru.shoppinglist.console.action;
 
 import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.service.ProductService;
 
-import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.Scanner;
 
+@Component
 public class FindProductByIdAction implements Action {
 
     private static final String ACTION_NAME = "Find by ID";
     private final ProductService productService;
 
+    @Autowired
     public FindProductByIdAction(ProductService productService) {
         this.productService = productService;
     }
@@ -20,7 +24,7 @@ public class FindProductByIdAction implements Action {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id: ");
         Long id = scanner.nextLong();
-        Optional<Product> response = productService.findById(id);
+        Product response = productService.findById(id);
         System.out.println("Response: " + response);
     }
 
