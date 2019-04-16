@@ -1,5 +1,6 @@
 package com.javaguru.shoppinglist.dto;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.javaguru.shoppinglist.domain.Category;
 import java.math.BigDecimal;
 
@@ -12,6 +13,10 @@ public class ProductDTO {
     private String description;
     private BigDecimal discount;
     private BigDecimal discountedPrice;
+
+
+    public ProductDTO() {
+    }
 
     public ProductDTO(Long id, String name, BigDecimal regularPrice, Category category, String description, BigDecimal discount, BigDecimal discountedPrice) {
         this.id = id;
