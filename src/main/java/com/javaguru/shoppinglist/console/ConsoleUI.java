@@ -1,6 +1,11 @@
 package com.javaguru.shoppinglist.console;
 
+import com.javaguru.shoppinglist.console.action.Action;
 import com.javaguru.shoppinglist.service.ProductService;
+import com.javaguru.shoppinglist.console.action.ExitAction;
+import com.javaguru.shoppinglist.console.action.CreateProductAction;
+import com.javaguru.shoppinglist.console.action.FindProductByIdAction;
+import com.javaguru.shoppinglist.console.action.FindProductByNameAction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -5,12 +5,12 @@ import com.javaguru.shoppinglist.repository.*;
 import com.javaguru.shoppinglist.service.validation.ProductValidationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
-@Component
+@Service
 public class DefaultProductService implements ProductService {
 
     private final ProductRepository productRepository;
@@ -22,22 +22,19 @@ public class DefaultProductService implements ProductService {
         this.validationService = validationService;
     }
 
-    public Optional<Product> findById(Long id) {
-        validationService.validateId(id);
-        return productRepository.findById(id);
-    }
-
-    @Override
-    public Optional<Product> findByName(String name) {
-        return productRepository.findByName(name);
-    }
-
-    @Override
+    @Transactional
     public Long create(Product product) {
         calculateDiscountedPrice(product);
         validationService.validate(product);
-        Long createdProduct = productRepository.createProduct(product);
-        return createdProduct;
+        return productRepository.createProduct(product);
+    }
+
+    public Product findById(Long id) {
+        return productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Product not fount : " + id));
+    }
+
+    public Product findByName(String name) {
+        return productRepository.findByName(name).orElseThrow(() -> new IllegalArgumentException("Product not found : " + name));
     }
 
     private void calculateDiscountedPrice(Product product) {

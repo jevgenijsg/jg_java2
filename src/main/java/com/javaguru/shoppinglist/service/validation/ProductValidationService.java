@@ -3,11 +3,11 @@ package com.javaguru.shoppinglist.service.validation;
 import com.javaguru.shoppinglist.domain.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-@Component
+@Service
 public class ProductValidationService {
 
     private Set<ProductValidationRule> validationRules;
@@ -19,11 +19,5 @@ public class ProductValidationService {
 
     public void validate(Product product) {
         validationRules.forEach(s -> s.validate(product));
-    }
-
-    public void validateId(Long id) {
-        if (id == null) {
-            throw new IllegalArgumentException("Id must be not null");
-        }
     }
 }

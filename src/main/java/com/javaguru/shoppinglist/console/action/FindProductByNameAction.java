@@ -1,17 +1,21 @@
-package com.javaguru.shoppinglist.console;
+package com.javaguru.shoppinglist.console.action;
 
 import com.javaguru.shoppinglist.domain.Product;
 import com.javaguru.shoppinglist.service.ProductService;
 
-import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.Scanner;
 
+@Component
 public class FindProductByNameAction implements Action {
 
     private static final String ACTION_NAME = "Find by Name";
 
     private final ProductService productService;
 
+    @Autowired
     public FindProductByNameAction(ProductService productService) {
         this.productService = productService;
     }
@@ -21,7 +25,7 @@ public class FindProductByNameAction implements Action {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name: ");
         String name = scanner.nextLine();
-        Optional<Product> response = productService.findByName(name);
+        Product response = productService.findByName(name);
         System.out.println("Response: " + response);
     }
 
