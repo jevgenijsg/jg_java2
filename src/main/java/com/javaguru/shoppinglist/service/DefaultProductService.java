@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class DefaultProductService implements ProductService {
@@ -36,6 +37,22 @@ public class DefaultProductService implements ProductService {
     public Product findByName(String name) {
         return productRepository.findByName(name).orElseThrow(() -> new IllegalArgumentException("Product not found : " + name));
     }
+
+    @Override
+    public void delete(Long id) {
+        productRepository.delete(id);
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return productRepository.findAll();
+    }
+
+    @Override
+    public void update(Product product) {
+        productRepository.update(product);
+    }
+
 
     private void calculateDiscountedPrice(Product product) {
         BigDecimal discountValue = (product.getRegularPrice().multiply(product.getDiscount())).divide(BigDecimal.valueOf(100));

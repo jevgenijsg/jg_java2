@@ -1,4 +1,4 @@
-package com.javaguru.shoppinglist.repository;
+/*package com.javaguru.shoppinglist.repository;
 
 import com.javaguru.shoppinglist.domain.Product;
 
@@ -38,4 +38,4 @@ public class ProductInMemoryRepository implements ProductRepository {
         }
         return Optional.empty();
     }
-}
+}*/
